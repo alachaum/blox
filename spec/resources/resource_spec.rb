@@ -12,11 +12,6 @@ describe Blox::Resource do
     expect(described_class.new.version).to eq(0)
   end
   
-  it "has a logs_path attribute" do
-    expect(described_class.new).to respond_to(:logs_path)
-    expect(described_class.new).to respond_to(:logs_path=)
-  end
-  
   describe "id" do
     it "returns the name of the class" do
       class MyApp < Blox::Resource;end

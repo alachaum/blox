@@ -1,14 +1,15 @@
 module Blox
   class Resource
+    attr_accessor :logs_path, :version, :human_version_mapping
+    
+    def initialize(opts = {})
+      self.version = opts[:version] || 0
+      self.human_version_mapping = opts[:human_version_mapping] || {}
+    end
     
     # Steps involved in installing the resource
     def install
       true
-    end
-    
-    # Path to the log file
-    def logs_path
-      nil
     end
     
     def start
@@ -26,6 +27,10 @@ module Blox
     
     def reload
       self.restart
+    end
+    
+    def human_version
+      self.human_version_mapping[self.version.to_s]
     end
   end
 end

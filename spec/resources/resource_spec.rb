@@ -6,9 +6,15 @@ describe Blox::Resource do
     expect(described_class.new.install).to be_true
   end
   
-  it "has a logs_path method" do
+  it "has a version attribute" do
+    expect(described_class.new).to respond_to(:version)
+    expect(described_class.new).to respond_to(:version=)
+    expect(described_class.new.version).to eq(0)
+  end
+  
+  it "has a logs_path attribute" do
     expect(described_class.new).to respond_to(:logs_path)
-    expect(described_class.new.logs_path).to be_nil
+    expect(described_class.new).to respond_to(:logs_path=)
   end
   
   it "has a start method" do
@@ -45,6 +51,22 @@ describe Blox::Resource do
       resource = described_class.new
       expect(resource).to receive(:restart)
       resource.reload
+    end
+  end
+  
+  describe "human_version" do
+    it "is a method" do
+      expect(described_class.new).to respond_to(:human_version)
+    end
+    
+    it "return nil if no version to human_version mapping" do
+      expect(described_class.new.human_version).to be_nil
+    end
+    
+    it "return the human_version from the mapping" do
+      resource = described_class.new
+      resource.human_version_mapping = {'0' => "0.0.0"}
+      expect(resource.human_version).to eq("0.0.0")
     end
   end
 end

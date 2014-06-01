@@ -1,10 +1,11 @@
 module Blox
   class Resource
-    attr_accessor :id, :version, :human_version_mapping
+    attr_accessor :id, :version, :human_version_mapping, :dependencies
     
     def initialize(opts = {})
       self.version = opts[:version] || 0
       self.human_version_mapping = opts[:human_version_mapping] || {}
+      self.dependencies = opts[:dependencies] || {}
     end
     
     def id

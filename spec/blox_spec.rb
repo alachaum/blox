@@ -38,7 +38,10 @@ describe Blox do
   
   describe "fetch_pack" do
     before(:each) do
-      Blox.configure { |c| c.root_path = File.expand_path('./spec/tmp/blox') }
+      Blox.configure do |c| 
+        c.repo_source = File.expand_path('./spec/fixtures/repo') + '/'
+        c.root_path = File.expand_path('./spec/tmp/blox')
+      end
       FileUtils.rm_rf(Dir.glob('./spec/tmp/*'))
     end
     
@@ -48,11 +51,6 @@ describe Blox do
     
     it "fetch a pack from the right source" do
       packname = "myapp"
-      remote_zipfile = open('./spec/fixtures/packzip.zip')
-      Blox.stub(:open).and_call_original
-      Blox.stub(:open).with("https://github.com/blox/pack-#{packname}/archive/production.zip").and_return(remote_zipfile)
-      
-      puts "https://github.com/blox/pack-#{packname}/archive/production.zip"
       Blox.fetch_pack(packname)
       expect(File.exists?("./spec/tmp/blox/packs/#{packname}/somefile")).to be_true
     end

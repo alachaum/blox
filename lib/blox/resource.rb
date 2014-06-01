@@ -1,8 +1,9 @@
 module Blox
   class Resource
-    attr_accessor :logs_path, :version, :human_version_mapping
+    attr_accessor :id, :logs_path, :version, :human_version_mapping
     
     def initialize(opts = {})
+      self.id = opts[:id] || 'resource'
       self.version = opts[:version] || 0
       self.human_version_mapping = opts[:human_version_mapping] || {}
     end

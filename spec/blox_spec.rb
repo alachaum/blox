@@ -26,4 +26,8 @@ describe Blox do
       expect(Blox.root_path).to eq('/blox')
     end
   end
+  
+  it "has the right store_path" do
+    expect(Blox.store_path).to eq("#{Blox.root_path}/store")
+  end
 end

@@ -16,6 +16,11 @@ module Blox
     self.config.root_path
   end
   
+  def self.store_path
+    self.configure unless self.config
+    self.config.root_path + '/store'
+  end
+  
   class Configuration
     attr_accessor :root_path
     

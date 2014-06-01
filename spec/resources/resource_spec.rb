@@ -75,4 +75,15 @@ describe Blox::Resource do
       expect(resource.human_version).to eq("0.0.0")
     end
   end
+  
+  describe "store_path" do
+    it "is a method" do
+      expect(described_class.new).to respond_to(:store_path)
+    end
+    
+    it "returns the right store_path" do
+      resource = described_class.new
+      expect(resource.store_path).to eq("#{Blox.store_path}/#{resource.id}")
+    end
+  end
 end

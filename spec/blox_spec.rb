@@ -27,7 +27,11 @@ describe Blox do
     end
   end
   
-  it "has the right store_path" do
-    expect(Blox.store_path).to eq("#{Blox.root_path}/store")
+  it "has the right particles_path" do
+    expect(Blox.particles_path).to eq("#{Blox.root_path}/particles")
+  end
+  
+  it "has the right packs_path" do
+    expect(Blox.packs_path).to eq("#{Blox.root_path}/packs")
   end
 end

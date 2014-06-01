@@ -36,8 +36,12 @@ module Blox
       self.human_version_mapping[self.version.to_s]
     end
     
-    def store_path
-      "#{Blox.store_path}/#{self.id}"
+    def particle_path
+      "#{Blox.particles_path}/#{self.id}"
+    end
+    
+    def pack_path
+      "#{Blox.packs_path}/#{self.id}"
     end
   end
 end

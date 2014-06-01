@@ -76,14 +76,25 @@ describe Blox::Resource do
     end
   end
   
-  describe "store_path" do
+  describe "particle_path" do
     it "is a method" do
-      expect(described_class.new).to respond_to(:store_path)
+      expect(described_class.new).to respond_to(:particle_path)
     end
     
-    it "returns the right store_path" do
+    it "returns the right particle_path" do
       resource = described_class.new
-      expect(resource.store_path).to eq("#{Blox.store_path}/#{resource.id}")
+      expect(resource.particle_path).to eq("#{Blox.particles_path}/#{resource.id}")
+    end
+  end
+  
+  describe "pack_path" do
+    it "is a method" do
+      expect(described_class.new).to respond_to(:pack_path)
+    end
+    
+    it "returns the right pack_path" do
+      resource = described_class.new
+      expect(resource.pack_path).to eq("#{Blox.packs_path}/#{resource.id}")
     end
   end
 end

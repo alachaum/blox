@@ -24,6 +24,7 @@ describe Blox do
     
     it "initializes the default config if not initialized" do
       expect(Blox.root_path).to eq('/blox')
+      expect(Blox.repo_source).to eq('https://github.com/blox/pack-')
     end
   end
   
@@ -33,5 +34,27 @@ describe Blox do
   
   it "has the right packs_path" do
     expect(Blox.packs_path).to eq("#{Blox.root_path}/packs")
+  end
+  
+  describe "fetch_pack" do
+    before(:each) do
+      Blox.configure { |c| c.root_path = File.expand_path('./spec/tmp/blox') }
+      FileUtils.rm_rf(Dir.glob('./spec/tmp/*'))
+    end
+    
+    it "is a method" do
+      expect(Blox).to respond_to(:fetch_pack)
+    end
+    
+    it "fetch a pack from the right source" do
+      packname = "myapp"
+      remote_zipfile = open('./spec/fixtures/packzip.zip')
+      Blox.stub(:open).and_call_original
+      Blox.stub(:open).with("https://github.com/blox/pack-#{packname}/archive/production.zip").and_return(remote_zipfile)
+      
+      puts "https://github.com/blox/pack-#{packname}/archive/production.zip"
+      Blox.fetch_pack(packname)
+      expect(File.exists?("./spec/tmp/blox/packs/#{packname}/somefile")).to be_true
+    end
   end
 end

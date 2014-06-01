@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem "activesupport"
+gem 'rubyzip'
 
 group :development, :test do
   # gem "rspec-core"

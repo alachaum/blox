@@ -2,12 +2,13 @@ module Blox
   class Resource
     attr_accessor :id, :logs_path, :version, :human_version_mapping
     
-    @@id = 'resource'
-    
     def initialize(opts = {})
-      self.id = opts[:id] || @@id
       self.version = opts[:version] || 0
       self.human_version_mapping = opts[:human_version_mapping] || {}
+    end
+    
+    def id
+      self.class.to_s.underscore
     end
     
     # Steps involved in installing the resource

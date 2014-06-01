@@ -6,12 +6,6 @@ describe Blox::Resource do
     expect(described_class.new.install).to be_true
   end
   
-  it "has an id attribute" do
-    expect(described_class.new).to respond_to(:id)
-    expect(described_class.new).to respond_to(:id=)
-    expect(described_class.new.id).to eq('resource')
-  end
-  
   it "has a version attribute" do
     expect(described_class.new).to respond_to(:version)
     expect(described_class.new).to respond_to(:version=)
@@ -31,6 +25,14 @@ describe Blox::Resource do
   it "has a stop method" do
     expect(described_class.new).to respond_to(:stop)
     expect(described_class.new.stop).to be_true
+  end
+  
+  describe "id" do
+    it "returns the name of the class" do
+      class MyApp < Blox::Resource;end
+      resource = MyApp.new
+      expect(resource.id).to eq('my_app')
+    end
   end
   
   describe "restart" do

@@ -16,23 +16,6 @@ module Blox
       true
     end
     
-    def start
-      true
-    end
-    
-    def stop
-      true
-    end
-    
-    def restart
-      self.start
-      self.stop
-    end
-    
-    def reload
-      self.restart
-    end
-    
     def human_version
       self.human_version_mapping[self.version.to_s]
     end

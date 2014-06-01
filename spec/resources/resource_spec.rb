@@ -17,48 +17,11 @@ describe Blox::Resource do
     expect(described_class.new).to respond_to(:logs_path=)
   end
   
-  it "has a start method" do
-    expect(described_class.new).to respond_to(:start)
-    expect(described_class.new.start).to be_true
-  end
-  
-  it "has a stop method" do
-    expect(described_class.new).to respond_to(:stop)
-    expect(described_class.new.stop).to be_true
-  end
-  
   describe "id" do
     it "returns the name of the class" do
       class MyApp < Blox::Resource;end
       resource = MyApp.new
       expect(resource.id).to eq('my_app')
-    end
-  end
-  
-  describe "restart" do
-    it "is a method" do
-      expect(described_class.new).to respond_to(:restart)
-      expect(described_class.new.restart).to be_true
-    end
-    
-    it "calls stop then start" do
-      resource = described_class.new
-      expect(resource).to receive(:start).ordered
-      expect(resource).to receive(:stop).ordered
-      resource.restart
-    end
-  end
-  
-  describe "reload" do
-    it "is a method" do
-      expect(described_class.new).to respond_to(:reload)
-      expect(described_class.new.reload).to be_true
-    end
-    
-    it "calls restart" do
-      resource = described_class.new
-      expect(resource).to receive(:restart)
-      resource.reload
     end
   end
   
